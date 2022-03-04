@@ -1,21 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react"
+import { useColorScheme } from "react-native"
+import { NavigationContainer } from "@react-navigation/native"
+import { ThemeProvider } from "styled-components"
+
+import StackNavigator from "./src/configs/navigation/StackNavigator"
+import { AuthContextProvider } from "./src/configs/contexts/AuthContext"
+import { MarvelContexttProvider } from "./src/configs/contexts/MarvelContext"
+import { darkTheme, lightTheme } from "./src/configs/themes/Theme"
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    const isDarkMode = useColorScheme() === "dark"
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    return (
+        <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+            <AuthContextProvider>
+                <MarvelContexttProvider>
+                    <NavigationContainer>
+                        <StackNavigator />
+                    </NavigationContainer>
+                </MarvelContexttProvider>
+            </AuthContextProvider>
+        </ThemeProvider>
+    )
+}
