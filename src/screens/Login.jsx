@@ -1,14 +1,13 @@
 import axios from "axios"
 import React, { useContext, useState } from "react"
 import { SafeAreaView, TextInput, Button } from "react-native"
-import { useAsyncStorage } from "@react-native-async-storage/async-storage"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 import AuthContext from "../configs/contexts/AuthContext"
 
 const Login = () => {
     const LOGIN_URI = "https://easy-login-api.herokuapp.com/users/login"
 
-    const LocalStorage = useAsyncStorage()
     const { setIsLoggedIn } = useContext(AuthContext)
 
     const [username, setUsername] = useState("")
@@ -21,7 +20,7 @@ const Login = () => {
         })
 
         if (query.headers["x-access-token"]) {
-            await LocalStorage.setItem("token", query.headers["x-access-token"])
+            await AsyncStorage.setItem("token", query.headers["x-access-token"])
             await setIsLoggedIn(true)
         }
     }

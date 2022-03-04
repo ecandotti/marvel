@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react"
 import { SafeAreaView, Button, FlatList } from "react-native"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 import apiKey from "../configs/api/apiKey"
 import api from "../utils/api"
@@ -8,10 +9,8 @@ import AuthContext from "../configs/contexts/AuthContext"
 import MarvelContext from "../configs/contexts/MarvelContext"
 
 import Card from "../components/Card"
-import { useAsyncStorage } from "@react-native-async-storage/async-storage"
 
 const Characters = () => {
-    const LocalStorage = useAsyncStorage()
     const { setIsLoggedIn } = useContext(AuthContext)
     const { list, setList } = useContext(MarvelContext)
 
@@ -31,7 +30,7 @@ const Characters = () => {
 
     const logout = () => {
         setIsLoggedIn(false)
-        LocalStorage.removeItem("token")
+        AsyncStorage.removeItem("token")
     }
 
     return (
