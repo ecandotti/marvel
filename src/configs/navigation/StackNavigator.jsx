@@ -3,9 +3,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
 import AuthContext from "../contexts/AuthContext"
 
-import Login from "../../screens/Login"
-import Characters from "../../screens/Characters"
-import Character from "../../screens/Character"
+import Login from "../../screens/guest/Login"
+
+import HomeSelfcare from "../../screens/selfcare"
+import Character from "../../screens/selfcare/Character"
 
 const Stack = createNativeStackNavigator()
 
@@ -16,7 +17,7 @@ const StackNavigator = () => {
         <Stack.Navigator>
             {isLoggedIn ? (
                 <Stack.Group>
-                    <Stack.Screen name="Characters" component={Characters} />
+                    <Stack.Screen name="HomeSelfcare" component={HomeSelfcare} options={{ headerShown: false }} />
                     <Stack.Screen name="Character" component={Character} />
                 </Stack.Group>
             ) : (
