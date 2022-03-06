@@ -1,12 +1,30 @@
-import { View, Text, Image } from "react-native"
-import React from "react"
+import React, { useContext } from "react"
+import { View, Text, Image, TouchableOpacity } from "react-native"
 
-const Card = ({ item: { name, thumbnail } }) => {
+import MarvelContext from "../../configs/contexts/MarvelContext"
+
+const Card = ({ item: { name, thumbnail, id }, navigation, item }) => {
+    const { addOrRemoveToFavList } = useContext(MarvelContext)
+
     return (
-        <View style={{ display: "flex", flexDirection: "row", margin: 20 }}>
-            <Image source={{ uri: `${thumbnail.path}.${thumbnail.extension}` }} style={{ width: 100, height: 100 }} />
-            <Text>{name}</Text>
-        </View>
+        <TouchableOpacity
+            onPress={() =>
+                navigation.navigate("Character", {
+                    marvelId: id,
+                })
+            }
+        >
+            <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", margin: 20 }}>
+                <Image
+                    source={{ uri: `${thumbnail.path}.${thumbnail.extension}` }}
+                    style={{ width: 100, height: 100 }}
+                />
+                <Text>{name}</Text>
+                <TouchableOpacity onPress={() => addOrRemoveToFavList(item)}>
+                    <Text>Fav</Text>
+                </TouchableOpacity>
+            </View>
+        </TouchableOpacity>
     )
 }
 
