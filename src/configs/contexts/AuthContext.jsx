@@ -17,7 +17,6 @@ export const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const removeNetInfoSubscription = NetInfo.addEventListener((state) => {
             const offline = !(state.isConnected && state.isInternetReachable)
-            console.log("Connexion is : ", state.isConnected)
             setOfflineStatus(offline)
         })
 
