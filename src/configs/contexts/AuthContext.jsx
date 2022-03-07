@@ -6,18 +6,20 @@ import NetInfo from "@react-native-community/netinfo"
 const AuthContext = createContext({
     isLoggedIn: false,
     setIsLoggedIn: () => {},
+    isOffline: false,
+    setIsOffline: () => {},
 })
 
 export const AuthContextProvider = ({ children }) => {
     const LOGIN_URI = "https://easy-login-api.herokuapp.com/users/login"
 
     const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [isOffline, setOfflineStatus] = useState(false)
+    const [isOffline, setIsOffline] = useState(false)
 
     useEffect(() => {
         const removeNetInfoSubscription = NetInfo.addEventListener((state) => {
             const offline = !(state.isConnected && state.isInternetReachable)
-            setOfflineStatus(offline)
+            setIsOffline(offline)
         })
 
         return () => removeNetInfoSubscription()
@@ -51,8 +53,9 @@ export const AuthContextProvider = ({ children }) => {
 
     const context = {
         isLoggedIn,
-        isOffline,
         setIsLoggedIn,
+        isOffline,
+        setIsOffline,
         login,
         logout,
     }

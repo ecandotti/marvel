@@ -9,6 +9,7 @@ import MarvelContext from "../../configs/contexts/MarvelContext"
 
 import Card from "../../components/Card"
 import Search from "../../components/Search"
+import ModalWrapper from "../../components/ModalWrapper"
 
 const Characters = ({ navigation }) => {
     const { list, setList } = useContext(MarvelContext)
@@ -70,6 +71,7 @@ const Characters = ({ navigation }) => {
                     <Button title="Réessayer" onPress={() => getAllCharacters()} />
                 </>
             )}
+            <ModalWrapper text="Pas de connexion" />
         </SafeAreaView>
     )
 }
