@@ -1,7 +1,8 @@
 import axios from "axios"
+import { MARVEL_URI } from "@env"
 
 const api = axios.create({
-    baseURL: "https://gateway.marvel.com",
+    baseURL: MARVEL_URI,
 })
 
 export default api
