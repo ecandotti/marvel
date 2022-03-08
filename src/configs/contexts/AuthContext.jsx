@@ -4,6 +4,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 import NetInfo from "@react-native-community/netinfo"
 
 const AuthContext = createContext({
+    login: () => {},
+    logout: () => {},
     isLoggedIn: false,
     setIsLoggedIn: () => {},
     isOffline: false,
