@@ -1,9 +1,13 @@
 import React, { useContext, useState } from "react"
-import { SafeAreaView, TextInput, Button } from "react-native"
+import { View, Image, Dimensions } from "react-native"
+
+import { Container, Button, TextInput } from "../../components/styled-components"
 
 import AuthContext from "../../configs/contexts/AuthContext"
 
 import ModalWrapper from "../../components/ModalWrapper"
+
+const win = Dimensions.get("window")
 
 const Login = () => {
     const { login } = useContext(AuthContext)
@@ -12,12 +16,30 @@ const Login = () => {
     const [password, setPassword] = useState("")
 
     return (
-        <SafeAreaView>
-            <TextInput placeholder="Username" value={username} onChangeText={(e) => setUsername(e)} />
-            <TextInput placeholder="Password" value={password} onChangeText={(e) => setPassword(e)} secureTextEntry />
-            <Button title="Connexion" onPress={() => login(username, password)} />
+        <Container>
+            <View style={{ marginBottom: 10 }}>
+                <Image
+                    style={{
+                        width: win.width / 2,
+                        height: win.width / 3.3,
+                        resizeMode: "contain",
+                        alignSelf: "center",
+                    }}
+                    resizeMode="stretch"
+                    source={{ uri: "https://logodownload.org/wp-content/uploads/2017/05/marvel-logo-4.png" }}
+                />
+            </View>
+            <TextInput placeholder="Username" value={username} onChangeText={(e) => setUsername(e)} color="#dfe6e9" />
+            <TextInput
+                placeholder="Password"
+                value={password}
+                onChangeText={(e) => setPassword(e)}
+                secureTextEntry
+                color="#dfe6e9"
+            />
+            <Button title="Connexion" onPress={() => login(username, password)} bgColor="#c23616" />
             <ModalWrapper text="Pas de connexion" />
-        </SafeAreaView>
+        </Container>
     )
 }
 

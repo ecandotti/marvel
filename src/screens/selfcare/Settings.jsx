@@ -1,5 +1,6 @@
 import React, { useContext } from "react"
-import { View, Button } from "react-native"
+
+import { Container, Button } from "../../components/styled-components"
 
 import AuthContext from "../../configs/contexts/AuthContext"
 
@@ -7,9 +8,9 @@ const Settings = () => {
     const { logout } = useContext(AuthContext)
 
     return (
-        <View>
+        <Container>
             <Button title="Deconnexion" onPress={() => logout()} />
-        </View>
+        </Container>
     )
 }
 

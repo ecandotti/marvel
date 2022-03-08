@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react"
-import { View, FlatList } from "react-native"
+import { FlatList } from "react-native"
 import Fuse from "fuse.js"
+
+import { Container } from "../../components/styled-components"
 
 import MarvelContext from "../../configs/contexts/MarvelContext"
 
@@ -19,7 +21,7 @@ const Favorites = ({ navigation }) => {
     const fuseSearch = fuse.search(customSearch)
 
     return (
-        <View>
+        <Container>
             <Search customSearch={customSearch} setCustomSearch={setCustomSearch} />
             {fuseSearch.length > 2 ? (
                 <FlatList
@@ -34,7 +36,7 @@ const Favorites = ({ navigation }) => {
                     keyExtractor={(item) => item.id}
                 />
             )}
-        </View>
+        </Container>
     )
 }
 

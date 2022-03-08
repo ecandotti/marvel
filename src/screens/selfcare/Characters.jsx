@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react"
-import { SafeAreaView, FlatList, Text, Button } from "react-native"
+import { FlatList, Text } from "react-native"
 import Fuse from "fuse.js"
+
+import { Container, Button } from "../../components/styled-components"
 
 import api from "../../utils/api"
 
@@ -48,7 +50,7 @@ const Characters = ({ navigation }) => {
     const fuseSearch = fuse.search(customSearch)
 
     return (
-        <SafeAreaView>
+        <Container>
             <Search customSearch={customSearch} setCustomSearch={setCustomSearch} />
             {isLoading ? (
                 <Text>Fetching data...</Text>
@@ -72,7 +74,7 @@ const Characters = ({ navigation }) => {
                 </>
             )}
             <ModalWrapper text="Pas de connexion" />
-        </SafeAreaView>
+        </Container>
     )
 }
 
