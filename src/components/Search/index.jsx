@@ -1,12 +1,8 @@
-import { View, TextInput } from "react-native"
 import React from "react"
+import { TextInput } from "../styled-components"
 
 const Search = ({ customSearch, setCustomSearch }) => {
-    return (
-        <View style={{ borderWidth: 1, padding: 10 }}>
-            <TextInput placeholder="IronMan" value={customSearch} onChangeText={(e) => setCustomSearch(e)} />
-        </View>
-    )
+    return <TextInput placeholder="IronMan" value={customSearch} onChangeText={(e) => setCustomSearch(e)} />
 }
 
 export default Search
