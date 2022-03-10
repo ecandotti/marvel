@@ -21,7 +21,7 @@ const Login = () => {
                 <Image
                     style={{
                         width: win.width / 2,
-                        height: win.width / 3.3,
+                        height: win.width / 4,
                         resizeMode: "contain",
                         alignSelf: "center",
                     }}

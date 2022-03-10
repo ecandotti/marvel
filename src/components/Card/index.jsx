@@ -1,10 +1,13 @@
 import React, { useContext } from "react"
 import { View, Text, Image, TouchableOpacity } from "react-native"
+import IonIcons from "react-native-vector-icons/Ionicons"
 
 import MarvelContext from "../../configs/contexts/MarvelContext"
 
-const Card = ({ item: { name, thumbnail }, navigation, item }) => {
-    const { addOrRemoveToFavList } = useContext(MarvelContext)
+const Card = ({ item: { name, thumbnail, id }, navigation, item }) => {
+    const { addOrRemoveToFavList, favList } = useContext(MarvelContext)
+
+    const isFav = favList.filter((favItem) => favItem.id === id)
 
     return (
         <TouchableOpacity
@@ -21,7 +24,11 @@ const Card = ({ item: { name, thumbnail }, navigation, item }) => {
                 />
                 <Text>{name}</Text>
                 <TouchableOpacity onPress={() => addOrRemoveToFavList(item)}>
-                    <Text>Fav</Text>
+                    {isFav.length !== 0 ? (
+                        <IonIcons name="heart" size={16} />
+                    ) : (
+                        <IonIcons name="heart-outline" size={16} />
+                    )}
                 </TouchableOpacity>
             </View>
         </TouchableOpacity>

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
-import { FlatList, Text } from "react-native"
+import { FlatList, Text, ActivityIndicator } from "react-native"
 import Fuse from "fuse.js"
 
 import { Container, Button } from "../../components/styled-components"
@@ -53,7 +53,7 @@ const Characters = ({ navigation }) => {
         <Container>
             <Search customSearch={customSearch} setCustomSearch={setCustomSearch} />
             {isLoading ? (
-                <Text>Fetching data...</Text>
+                <ActivityIndicator size={64} />
             ) : fuseSearch.length > 2 ? (
                 <FlatList
                     data={fuseSearch}
