@@ -17,7 +17,7 @@ const Login = () => {
 
     return (
         <Container>
-            <View style={{ marginBottom: 50 }}>
+            <View style={{ marginTop: 20, marginBottom: 50 }}>
                 <Image
                     style={{
                         width: win.width / 2,
@@ -44,7 +44,13 @@ const Login = () => {
                 color="#dfe6e9"
                 icon="lock-closed-outline"
             />
-            <Button title="Connexion" onPress={() => login(username, password)} bgColor="#c23616" />
+            <Button
+                title="Connexion"
+                onPress={() => {
+                    login(username, password)
+                }}
+                bgColor="#c23616"
+            />
             <ModalWrapper text="Pas de connexion" />
         </Container>
     )

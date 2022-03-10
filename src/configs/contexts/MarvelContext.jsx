@@ -8,7 +8,7 @@ const MarvelContext = createContext({
     setFavList: () => {},
 })
 
-export const MarvelContexttProvider = ({ children }) => {
+export const MarvelContextProvider = ({ children }) => {
     const [list, setList] = useState([])
     const [favList, setFavList] = useState([])
 
