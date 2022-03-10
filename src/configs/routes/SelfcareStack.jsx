@@ -3,13 +3,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import IonIcons from "react-native-vector-icons/Ionicons"
 IonIcons.loadFont()
 
-import Favorites from "./Favorites"
-import Characters from "./Characters"
-import Settings from "./Settings"
+import Characters from "../../screens/selfcare/Characters"
+import Favorites from "../../screens/selfcare/Favorites"
+import Settings from "../../screens/selfcare/Settings"
 
 const Tab = createBottomTabNavigator()
 
-const Index = () => {
+const SelfcareStack = () => {
     return (
         <Tab.Navigator>
             <Tab.Screen
@@ -37,4 +37,4 @@ const Index = () => {
     )
 }
 
-export default Index
+export default SelfcareStack
