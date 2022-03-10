@@ -17,7 +17,7 @@ const Card = ({ item: { name, thumbnail, id }, navigation, item }) => {
                 })
             }
         >
-            <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", margin: 20 }}>
+            <View style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", marginBottom: 20 }}>
                 <Image
                     source={{ uri: `${thumbnail?.path}.${thumbnail?.extension}` }}
                     style={{ width: 100, height: 100 }}

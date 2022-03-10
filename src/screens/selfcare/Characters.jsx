@@ -17,6 +17,7 @@ const Characters = ({ navigation }) => {
     const { list, setList } = useContext(MarvelContext)
 
     const [customSearch, setCustomSearch] = useState("")
+    const [page, setPage] = useState(0)
     const [isLoading, setLoading] = useState(false)
     const [isError, setError] = useState(false)
 
@@ -32,10 +33,13 @@ const Characters = ({ navigation }) => {
             const query = await api.get("/v1/public/characters", {
                 params: {
                     ...apiKey,
+                    limit: 20,
+                    offset: page,
                 },
             })
 
-            await setList(query.data.data.results)
+            await setList(list.concat(query.data.data.results))
+            await setPage((prevCount) => prevCount + 1)
         } catch (error) {
             setError(true)
         }
@@ -51,20 +55,25 @@ const Characters = ({ navigation }) => {
 
     return (
         <Container>
-            <Search customSearch={customSearch} setCustomSearch={setCustomSearch} />
             {isLoading ? (
                 <ActivityIndicator size={64} />
             ) : fuseSearch.length > 2 ? (
                 <FlatList
                     data={fuseSearch}
                     renderItem={({ item }) => <Card item={item.item} navigation={navigation} />}
-                    keyExtractor={(item) => item.item.id}
+                    ListHeaderComponent={<Search customSearch={customSearch} setCustomSearch={setCustomSearch} />}
+                    keyExtractor={(item, i) => i}
+                    showsVerticalScrollIndicator={false}
                 />
             ) : (
                 <FlatList
                     data={list}
                     renderItem={({ item }) => <Card item={item} navigation={navigation} />}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item, i) => i}
+                    showsVerticalScrollIndicator={false}
+                    ListHeaderComponent={<Search customSearch={customSearch} setCustomSearch={setCustomSearch} />}
+                    onEndReached={getAllCharacters}
+                    onEndReachedThreshold={0.1}
                 />
             )}
             {isError && (

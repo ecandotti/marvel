@@ -17,7 +17,7 @@ const Login = () => {
 
     return (
         <Container>
-            <View style={{ marginBottom: 10 }}>
+            <View style={{ marginBottom: 50 }}>
                 <Image
                     style={{
                         width: win.width / 2,
@@ -29,13 +29,20 @@ const Login = () => {
                     source={{ uri: "https://logodownload.org/wp-content/uploads/2017/05/marvel-logo-4.png" }}
                 />
             </View>
-            <TextInput placeholder="Username" value={username} onChangeText={(e) => setUsername(e)} color="#dfe6e9" />
+            <TextInput
+                placeholder="Username"
+                value={username}
+                onChangeText={(e) => setUsername(e)}
+                color="#dfe6e9"
+                icon="person-outline"
+            />
             <TextInput
                 placeholder="Password"
                 value={password}
                 onChangeText={(e) => setPassword(e)}
                 secureTextEntry
                 color="#dfe6e9"
+                icon="lock-closed-outline"
             />
             <Button title="Connexion" onPress={() => login(username, password)} bgColor="#c23616" />
             <ModalWrapper text="Pas de connexion" />

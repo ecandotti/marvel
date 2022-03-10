@@ -16,21 +16,21 @@ const Index = () => {
                 name="Characters"
                 component={Characters}
                 options={{
-                    tabBarIcon: ({ color }) => <IonIcons name="people-outline" color={color} size={24} />,
+                    tabBarIcon: ({ color, size }) => <IonIcons name="people-outline" color={color} size={size} />,
                 }}
             />
             <Tab.Screen
                 name="Favorites"
                 component={Favorites}
                 options={{
-                    tabBarIcon: ({ color }) => <IonIcons name="heart-outline" color={color} size={24} />,
+                    tabBarIcon: ({ color, size }) => <IonIcons name="heart-outline" color={color} size={size} />,
                 }}
             />
             <Tab.Screen
                 name="Settings"
                 component={Settings}
                 options={{
-                    tabBarIcon: ({ color }) => <IonIcons name="settings-outline" color={color} size={24} />,
+                    tabBarIcon: ({ color, size }) => <IonIcons name="settings-outline" color={color} size={size} />,
                 }}
             />
         </Tab.Navigator>
