@@ -57,3 +57,4 @@ dist/
 # Misc
 .vscode/
 .env
+firebase.json
