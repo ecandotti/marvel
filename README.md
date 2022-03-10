@@ -46,5 +46,6 @@ To Do :
 -   [x] Favorites list
 -   [x] Offline mode -> FavList available
 -   [x] Comment all project
--   [_] Infinite scroll
+-   [x] Infinite scroll
+-   [_] Add Ads
 -   [x] Design
