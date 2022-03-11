@@ -17,12 +17,15 @@ const Characters = ({ navigation }) => {
     const { list, setList } = useContext(MarvelContext)
 
     const [customSearch, setCustomSearch] = useState("")
-    const [page, setPage] = useState(0)
+    const [offset, setOffset] = useState(0)
+    const [firstLoad, setFirstLoad] = useState(true)
     const [isLoading, setLoading] = useState(false)
     const [isError, setError] = useState(false)
 
-    useEffect(() => {
-        getAllCharacters()
+    useEffect(async () => {
+        setFirstLoad(true)
+        await getAllCharacters()
+        setFirstLoad(false)
     }, [])
 
     const getAllCharacters = async () => {
@@ -34,12 +37,12 @@ const Characters = ({ navigation }) => {
                 params: {
                     ...apiKey,
                     limit: 20,
-                    offset: page,
+                    offset,
                 },
             })
 
-            await setList(list.concat(query.data.data.results))
-            await setPage((prevCount) => prevCount + 1)
+            await setList([...list, ...query.data.data.results])
+            await setOffset((prevCount) => prevCount + 1)
         } catch (error) {
             setError(true)
         }
@@ -55,7 +58,7 @@ const Characters = ({ navigation }) => {
 
     return (
         <Container>
-            {isLoading ? (
+            {firstLoad ? (
                 <ActivityIndicator size={64} />
             ) : fuseSearch.length > 2 ? (
                 <FlatList
@@ -74,6 +77,8 @@ const Characters = ({ navigation }) => {
                     ListHeaderComponent={<Search customSearch={customSearch} setCustomSearch={setCustomSearch} />}
                     onEndReached={getAllCharacters}
                     onEndReachedThreshold={0.1}
+                    ListFooterComponent={isLoading && <ActivityIndicator size={64} />}
+                    ListFooterComponentStyle={{ paddingBottom: 50 }}
                 />
             )}
             {isError && (
