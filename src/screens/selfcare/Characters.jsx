@@ -22,11 +22,15 @@ const Characters = ({ navigation }) => {
     const [isLoading, setLoading] = useState(false)
     const [isError, setError] = useState(false)
 
-    useEffect(async () => {
+    useEffect(() => {
+        firstLoadApi()
+    }, [])
+
+    const firstLoadApi = async () => {
         setFirstLoad(true)
         await getAllCharacters()
         setFirstLoad(false)
-    }, [])
+    }
 
     const getAllCharacters = async () => {
         setLoading(true)
@@ -42,7 +46,7 @@ const Characters = ({ navigation }) => {
             })
 
             await setList([...list, ...query.data.data.results])
-            await setOffset((prevCount) => prevCount + 1)
+            await setOffset((prevCount) => prevCount + 20)
         } catch (error) {
             setError(true)
         }
@@ -65,14 +69,14 @@ const Characters = ({ navigation }) => {
                     data={fuseSearch}
                     renderItem={({ item }) => <Card item={item.item} navigation={navigation} />}
                     ListHeaderComponent={<Search customSearch={customSearch} setCustomSearch={setCustomSearch} />}
-                    keyExtractor={(item, i) => i}
+                    keyExtractor={(item) => item.id}
                     showsVerticalScrollIndicator={false}
                 />
             ) : (
                 <FlatList
                     data={list}
                     renderItem={({ item }) => <Card item={item} navigation={navigation} />}
-                    keyExtractor={(item, i) => i}
+                    keyExtractor={(item) => item.id}
                     showsVerticalScrollIndicator={false}
                     ListHeaderComponent={<Search customSearch={customSearch} setCustomSearch={setCustomSearch} />}
                     onEndReached={getAllCharacters}

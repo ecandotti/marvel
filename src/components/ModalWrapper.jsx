@@ -12,7 +12,11 @@ const ModalWrapper = ({ text }) => {
             <Modal isVisible={isOffline}>
                 <View style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
                     <Text style={{ color: "white", fontSize: 34, fontWeight: "bold" }}>{text}</Text>
-                    <Button title="Ok" onPress={() => setIsOffline(false)} />
+                    <Button
+                        title="Me faire foutre"
+                        onPress={() => setIsOffline(false)}
+                        style={{ color: "white", fontWeight: "bold" }}
+                    />
                 </View>
             </Modal>
         </View>

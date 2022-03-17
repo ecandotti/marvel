@@ -1,14 +1,24 @@
 {
-  "expo": {
-    "name": "marvel",
-    "slug": "marvel",
-    "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "bundleIdentifier": "org.name.marvel"
+    "expo": {
+        "name": "Marvel",
+        "slug": "marvel",
+        "version": "1.0.0",
+        "assetBundlePatterns": ["**/*"],
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "org.name.marvel",
+            "config": {
+                "googleMobileAdsAppId": "ca-app-pub-9539113506509263~9479984759"
+            }
+        },
+        "android": {
+            "package": "org.name.marvel",
+            "config": {
+                "googleMobileAdsAppId": "ca-app-pub-9539113506509263~4328843812"
+            }
+        }
     }
-  },
-  "name": "marvel"
 }

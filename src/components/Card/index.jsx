@@ -4,10 +4,12 @@ import IonIcons from "react-native-vector-icons/Ionicons"
 
 import MarvelContext from "../../configs/contexts/MarvelContext"
 
-const Card = ({ item: { name, thumbnail, id }, navigation, item }) => {
+const Card = ({ item, navigation }) => {
+    const { name, thumbnail, id } = item
     const { addOrRemoveToFavList, favList } = useContext(MarvelContext)
 
-    const isFav = favList.filter((favItem) => favItem.id === id)
+    // const isFav = favList.filter((favItem) => favItem.id === id)
+    const isFav = true
 
     return (
         <TouchableOpacity

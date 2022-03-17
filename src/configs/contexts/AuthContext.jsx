@@ -18,19 +18,18 @@ export const AuthContextProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [isOffline, setIsOffline] = useState(false)
 
-    const hydrateToken = async () => {
-        const token = await AsyncStorage.getItem("token")
-        token && setIsLoggedIn(token)
-    }
-
     useEffect(() => {
-        hydrateToken()
+        const hydrateToken = async () => {
+            const token = await AsyncStorage.getItem("token")
+            token && setIsLoggedIn(token)
+        }
 
         const removeNetInfoSubscription = NetInfo.addEventListener((state) => {
             const offline = !(state.isConnected && state.isInternetReachable)
             setIsOffline(offline)
         })
 
+        hydrateToken()
         return () => removeNetInfoSubscription()
     }, [])
 

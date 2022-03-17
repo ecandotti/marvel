@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react"
-import { FlatList } from "react-native"
+import { FlatList, Image } from "react-native"
 import Fuse from "fuse.js"
 
 import { Container } from "../../components/styled-components"
@@ -12,6 +12,8 @@ import Search from "../../components/Search"
 const Favorites = ({ navigation }) => {
     const { favList } = useContext(MarvelContext)
 
+    console.log("Alors : ", favList[0].path)
+
     const [customSearch, setCustomSearch] = useState("")
 
     const fuse = new Fuse(favList, {
@@ -23,7 +25,8 @@ const Favorites = ({ navigation }) => {
     return (
         <Container>
             <Search customSearch={customSearch} setCustomSearch={setCustomSearch} />
-            {fuseSearch.length > 2 ? (
+            <Image source={{ uri: favList[0].path }} style={{ width: 200, height: 200 }} />
+            {/* {fuseSearch.length > 2 ? (
                 <FlatList
                     data={fuseSearch}
                     renderItem={({ item }) => <Card item={item.item} navigation={navigation} />}
@@ -35,7 +38,7 @@ const Favorites = ({ navigation }) => {
                     renderItem={({ item }) => <Card item={item} navigation={navigation} />}
                     keyExtractor={(item) => item.id}
                 />
-            )}
+            )} */}
         </Container>
     )
 }

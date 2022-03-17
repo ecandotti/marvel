@@ -1,4 +1,4 @@
-package com.marvel;
+package org.name.marvel;
 
 import android.os.Build;
 import android.os.Bundle;
